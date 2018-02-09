@@ -12,6 +12,39 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
+
       <h1>Tic Tac Toe</h1>
+
+      <p id="message"></p>
+
+      <form id="sign-up" class="border">
+        <fieldset>
+          <legend>Sign-up!</legend>
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="password">
+          <input type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+          <input type="submit" value="Sign up!">
+        </fieldset>
+      </form>
+      <form id="sign-in" class="border">
+        <fieldset>
+          <legend>Sign-in!</legend>
+          <input type="text" name="credentials[email]" placeholder="Email">
+          <input type="password" name="credentials[password]" placeholder="password">
+          <input type="submit" value="Sign in!">
+        </fieldset>
+      </form>
+      <form id="change-password" class="border">
+        <fieldset>
+          <legend>Change-password!</legend>
+          <input type="password" name="passwords[old]" placeholder="old password">
+          <input type="password" name="passwords[new]" placeholder="new password">
+          <input type="submit" value="Change-password!">
+        </fieldset>
+      </form>
+      <form id="sign-out" class="border">
+        <legend>sign-out</legend>
+        <input type="submit" value="Sign out!">
+    </form>
     </body>
 </html>
