@@ -27,7 +27,7 @@ const initGame = function () {
   // the first player is assumed to be X therefore currentPlayer will start as xPlayer
   let currentPlayer = xPlayer
   // empty array that I am going to push the X's and O's into the proper indeces
-  const squaresPlayed = ['', '', '', '', '', '', '', '', '']
+  let squaresPlayed = ['', '', '', '', '', '', '', '', '']
   // this array of objects are the winning combos according to the div ids
   const winningCombos = [
     {
@@ -74,10 +74,25 @@ const initGame = function () {
   let playerStatusMessage
   const updateStatusMessage = function (message) {
     playerStatusMessage = 'Player ' + currentPlayer + ', it is your turn'
+
+    if (winner) {
+      playerStatusMessage = 'Player ' + currentPlayer + ' is the WINNER!!!!!'
+    } else if (turns === 9 && winner === false) {
+      playerStatusMessage = 'There were no winners only LOSERS!! Game over!'
+    }
     // .text is jquery method
     $('#playerStatusMessage').text(playerStatusMessage)
   }
-  updateStatusMessage()
+  // updateStatusMessage()
+
+  $('#newgame').on('click', function () {
+    turns = 0
+    winner = false
+    currentPlayer = xPlayer
+    squaresPlayed = ['', '', '', '', '', '', '', '', '']
+    $('#gameboard > div').empty()
+    $('#playerStatusMessage').text('Player X, it is your turn')
+  })
 
   // process the click function
   $('#gameboard > div').on('click', function (event) {
@@ -98,6 +113,7 @@ const initGame = function () {
     // determine if sqaure is empty
     const isValid = $(squareTarget).is(':empty')
     if (!isValid) {
+      $('#playerStatusMessage').text('Player ' + currentPlayer + ', invalid move, try again')
       return
     }
     // console.log(isValid)
@@ -132,6 +148,7 @@ const initGame = function () {
           if (square1 === square2 && square2 === square3) {
             console.log('winner!!')
             winner = true
+            updateStatusMessage()
             break
           }
           // if (turns === 9) {
@@ -144,13 +161,16 @@ const initGame = function () {
     }
     // if it turns has reached 9 turns and there is no winner than you both are losers!!!!
     if (turns === 9 && winner === false) {
-      console.log('losers')
       return
     }
-    if (currentPlayer === xPlayer) {
-      currentPlayer = oPlayer
-    } else {
-      currentPlayer = xPlayer
+    if (!winner) {
+      if (currentPlayer === xPlayer) {
+        currentPlayer = oPlayer
+        updateStatusMessage()
+      } else {
+        currentPlayer = xPlayer
+        updateStatusMessage()
+      }
     }
     // console.log(squaresPlayed)
   })

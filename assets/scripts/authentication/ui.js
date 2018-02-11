@@ -11,8 +11,7 @@ const onSignInSuccess = function (data) {
   $('#message').removeClass('error').show()
   gameLogic.initGame()
   $('#playerStatusMessage').show()
-  setTimeout('$("#message").hide()', 1000)
-
+  $('body').addClass('signed-in')
 }
 
 const onSignInFailure = function (error) {
@@ -49,10 +48,11 @@ const changePasswordFailure = function (error) {
 const signOutSuccess = function () {
   $('#message').text('Signed out successfully')
   $('#message').removeClass('error').show()
-
   store.user = null
   $('#sign-in, #sign-up, #change-password').show()
   $('#gameboard').remove()
+  $('body').removeClass('signed-in')
+  $('#playerStatusMessage').hide()
 
   console.log('successfully signed out')
 }
