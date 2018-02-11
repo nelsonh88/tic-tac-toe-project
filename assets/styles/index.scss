@@ -1,50 +1,59 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
 $black: #000;
+$bloodred: #820505;
+$g-a-red: #e22424;
+$g-a-white: #fff;
+$go-green: #055f05;
+
 h1 {
   font-size: 46px;
-    text-align: center;
-    margin-bottom: 15px
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 #gameboard {
+  background-color: $g-a-red;
+  border: 6px solid $bloodred;
+  border-radius: 10px;
+  color: $g-a-white;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  height: 400px;
+  margin: 0 auto;
   width: 400px;
-height: 400px;
-margin: 0 auto;
-background-color: #e22424;
-color: #fff;
-border: 6px solid #820505;
-border-radius: 10px;
-display: grid;
-grid-template: repeat(3, 1fr)/repeat(3, 1fr);
 }
 
 #gameboard > div {
-  border: 3px solid #770404;
-font-family: Helvetica;
-font-weight: bold;
-font-size: 4em;
-display: flex;
-justify-content: center;
-align-items: center;
-cursor: not-allowed;
+  align-items: center;
+  border: 3px solid $bloodred;
+  cursor: not-allowed;
+  display: flex;
+  font-family: Helvetica;
+  font-size: 4em;
+  font-weight: bold;
+  justify-content: center;
 }
+
 // below is if div is empty show the default cursor, if not show the not allowed cursor
 #gameboard > div:empty {
   cursor: default;
 }
 
-#message, #playerStatusMessage {
+#message,
+#playerStatusMessage {
+  background: $go-green;
+  border-radius: 10px;
+  color: $g-a-white;
+  display: none;
+  font-size: 18px;
+  margin: 20px auto;
+  padding: 10px;
   text-align: center;
-      font-size: 18px;
-      background: #055f05;
-      color: #fff;
-      padding: 10px;
-      width: 32%;
-      margin: 20px auto;
-      border-radius: 10px;
-      display: none;
+  width: 32%;
 }
+
 #message.error {
   background: #cc0000;
 }
@@ -91,6 +100,10 @@ cursor: not-allowed;
     right: 20px;
     top: 20px;
     text-align: right;
+    border-bottom: 3px solid green;
+    width: auto;
+    border-radius: 0;
+    line-height: 2;
 }
 
 .signed-in #sign-out legend {
@@ -98,7 +111,7 @@ cursor: not-allowed;
   }
 
   .signed-in #sign-out {
-    margin-top: 30px;
+    margin-top: 50px;
   }
 
 #newgame {
@@ -106,8 +119,54 @@ cursor: not-allowed;
 }
 
 .signed-in #newgame {
-  display: inline-block;
-    position: absolute;
-    top: 50px;
-    left: 20px;
+    display: block;
+    margin: 20px auto;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    background: $bloodred;
+    color: #fff;
+}
+
+#sign-out {
+    display: none;
+}
+
+.signed-in #sign-out {
+    display: inherit;
+}
+form#change-password {
+// form:nth-child(3n) {
+border-bottom: none;
+margin-bottom: 0;
+padding-bottom: 0;
+}
+
+#sign-up input[name='credentials[email]'] {
+    display: block;
+    width: 99.5%;
+    margin: 0 0 10px 0;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 10px auto 0 auto;
+}
+
+#sign-up input[name="credentials[password]"],
+#sign-up input[name="credentials[password_confirmation]"] {
+    width: 49.25%;
+    display: inline-block;
+}
+
+#sign-in input[name="credentials[email]"],
+#sign-in input[name="credentials[password]"]
+ {
+    width: 49.25%;
+}
+
+#change-password input[name="passwords[old]"],
+#change-password input[name="passwords[new]"]
+ {
+    width: 49.25%;
 }

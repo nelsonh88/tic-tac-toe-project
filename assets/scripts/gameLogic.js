@@ -2,11 +2,10 @@
 // made the whole gameLogic into a function so I can export it and require it
 // in the ui file which is lready required in the index.js file
 const initGame = function () {
-  // created the gameboard
+  // created the gameboard using javascript
   const gameboard = document.createElement('div')
   gameboard.id = 'gameboard'
-  // gameboard.innerHTML = 'Hello World!'
-  document.body.appendChild(gameboard)
+  document.getElementById('gamearea').appendChild(gameboard)
 
   // Create 9 cell grid for the gameboard and give it divs
   for (let i = 0; i < 9; i++) {
@@ -71,7 +70,11 @@ const initGame = function () {
       spot3: 6
     }
   ]
+  // making a playerStatusMessage variable so we can add notifications for the
+  // users
   let playerStatusMessage
+  // the function below allows me to updateStatusMessage for any particular
+  // situation ie: who's player turn it is, loser, winner, tie notifications
   const updateStatusMessage = function (message) {
     playerStatusMessage = 'Player ' + currentPlayer + ', it is your turn'
 
@@ -83,9 +86,9 @@ const initGame = function () {
     // .text is jquery method
     $('#playerStatusMessage').text(playerStatusMessage)
   }
-  // updateStatusMessage()
-
+  // a onclick funtion for the newgame button which restarts the game
   $('#newgame').on('click', function () {
+    // all of the variables below will get reset to how it started
     turns = 0
     winner = false
     currentPlayer = xPlayer
@@ -113,6 +116,8 @@ const initGame = function () {
     // determine if sqaure is empty
     const isValid = $(squareTarget).is(':empty')
     if (!isValid) {
+      // by using jquery I am able to select the playerStatusMessage and set it
+      // up so I can infomr the users on invalid moves
       $('#playerStatusMessage').text('Player ' + currentPlayer + ', invalid move, try again')
       return
     }
@@ -120,7 +125,7 @@ const initGame = function () {
 
     // the .html writes the X or O on the grid
     $(squareTarget).html(currentPlayer)
-    // squaresPlayed.push(currentPlayer)
+    // squaresPlayed.push(currentPlayer
     // the above .push method for the array was not working
     squaresPlayed.splice(squareLocation, 1, currentPlayer)
     // console.log(squaresPlayed)
@@ -161,6 +166,8 @@ const initGame = function () {
     }
     // if it turns has reached 9 turns and there is no winner than you both are losers!!!!
     if (turns === 9 && winner === false) {
+      $('#playerStatusMessage').text('LOSERS!! Game over!')
+
       return
     }
     if (!winner) {

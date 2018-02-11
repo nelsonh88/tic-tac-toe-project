@@ -4,7 +4,7 @@ const store = require('../store')
 const gameLogic = require('../gameLogic')
 
 const onSignInSuccess = function (data) {
-  $('#message').text('sign-in successfully')
+  $('#message').text('signed in successfully')
   store.user = data.user
   // console.log('store is ', store.user)
   $('#sign-in, #sign-up, #change-password').hide()
