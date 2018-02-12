@@ -7,7 +7,7 @@ const onSignInSuccess = function (data) {
   $('#message').text('signed in successfully')
   store.user = data.user
   // console.log('store is ', store.user)
-  $('#sign-in, #sign-up, #change-password').hide()
+  $('#sign-in, #sign-up').hide()
   $('#message').removeClass('error').show()
   gameLogic.initGame()
   $('#playerStatusMessage').show()
