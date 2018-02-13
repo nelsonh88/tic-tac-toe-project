@@ -141,7 +141,7 @@ const initGame = function () {
         const spot1 = winningCombos[combo].spot1
         const spot2 = winningCombos[combo].spot2
         const spot3 = winningCombos[combo].spot3
-        console.log('spot1: ' + spot1 + ' / spot2: ' + spot2 + ' / spot3: ' + spot3)
+        // console.log('spot1: ' + spot1 + ' / spot2: ' + spot2 + ' / spot3: ' + spot3)
         // get the values in the squaresPlayed array using the values from the winning combinations
         const square1 = squaresPlayed[spot1]
         const square2 = squaresPlayed[spot2]
