@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const gameLogic = require('../gameLogic')
+// const events = require('./events')
 
 const onSignInSuccess = function (data) {
   $('#message').text('signed in successfully')
@@ -64,6 +65,19 @@ const signOutFailure = function (error) {
   console.log(error)
 }
 
+const onCreateGameSuccess = function (data) {
+  // store.game = {}
+  store.game.id = data.game.id
+  store.game.xPlayer = data.game.player_x
+  store.game.oPlayer = data.game.player_o
+  store.game.over = data.game.over
+  console.log(store.game)
+}
+
+const onCreateGameError = function (error) {
+  console.log('cannot create game' + error)
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
@@ -72,5 +86,7 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  onCreateGameSuccess,
+  onCreateGameError
 }
