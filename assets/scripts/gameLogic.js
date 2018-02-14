@@ -1,5 +1,59 @@
 'use strict'
 
+let turns = 0
+// set winner false by default because no one won yet at the start of the game
+let winner = false
+// xPlayer will put down a X on the board
+const xPlayer = 'X'
+// oPlayer will put down a O on the board
+const oPlayer = 'O'
+// the first player is assumed to be X therefore currentPlayer will start as xPlayer
+let currentPlayer = xPlayer
+// empty array that I am going to push the X's and O's into the proper indeces
+let squaresPlayed = ['', '', '', '', '', '', '', '', '']
+// this array of objects are the winning combos according to the div ids
+const winningCombos = [
+  {
+    spot1: 0,
+    spot2: 1,
+    spot3: 2
+  },
+  {
+    spot1: 3,
+    spot2: 4,
+    spot3: 5
+  },
+  {
+    spot1: 6,
+    spot2: 7,
+    spot3: 8
+  },
+  {
+    spot1: 0,
+    spot2: 3,
+    spot3: 6
+  },
+  {
+    spot1: 1,
+    spot2: 4,
+    spot3: 7
+  },
+  {
+    spot1: 2,
+    spot2: 5,
+    spot3: 8
+  },
+  {
+    spot1: 0,
+    spot2: 4,
+    spot3: 8
+  },
+  {
+    spot1: 2,
+    spot2: 4,
+    spot3: 6
+  }
+]
 // made the whole gameLogic into a function so I can export it and require it
 // in the ui file which is lready required in the index.js file
 const initGame = function () {
@@ -14,63 +68,11 @@ const initGame = function () {
     gameboardSquare.id = 'square' + i
     // console.log(gameboardSquare.id)
     document.getElementById('gameboard').appendChild(gameboardSquare)
+    $('#gameboard').wrap("<div class='gameboard-wrapper'></div>")
   }
   // this will keep track how many turns have been taken this will be used to determine who goes first
   // because the first turn will always be x
-  let turns = 0
-  // set winner false by default because no one won yet at the start of the game
-  let winner = false
-  // xPlayer will put down a X on the board
-  const xPlayer = 'X'
-  // oPlayer will put down a O on the board
-  const oPlayer = 'O'
-  // the first player is assumed to be X therefore currentPlayer will start as xPlayer
-  let currentPlayer = xPlayer
-  // empty array that I am going to push the X's and O's into the proper indeces
-  let squaresPlayed = ['', '', '', '', '', '', '', '', '']
-  // this array of objects are the winning combos according to the div ids
-  const winningCombos = [
-    {
-      spot1: 0,
-      spot2: 1,
-      spot3: 2
-    },
-    {
-      spot1: 3,
-      spot2: 4,
-      spot3: 5
-    },
-    {
-      spot1: 6,
-      spot2: 7,
-      spot3: 8
-    },
-    {
-      spot1: 0,
-      spot2: 3,
-      spot3: 6
-    },
-    {
-      spot1: 1,
-      spot2: 4,
-      spot3: 7
-    },
-    {
-      spot1: 2,
-      spot2: 5,
-      spot3: 8
-    },
-    {
-      spot1: 0,
-      spot2: 4,
-      spot3: 8
-    },
-    {
-      spot1: 2,
-      spot2: 4,
-      spot3: 6
-    }
-  ]
+
   // making a playerStatusMessage variable so we can add notifications for the
   // users
   let playerStatusMessage
@@ -87,17 +89,6 @@ const initGame = function () {
     // .text is jquery method
     $('#playerStatusMessage').text(playerStatusMessage)
   }
-  // a onclick funtion for the newgame button which restarts the game
-  $('#newgame').on('click', function () {
-    // all of the variables below will get reset to how it started
-    turns = 0
-    winner = false
-    currentPlayer = xPlayer
-    squaresPlayed = ['', '', '', '', '', '', '', '', '']
-    $('#gameboard > div').empty()
-    $('#playerStatusMessage').text('Player X, it is your turn')
-  })
-
   // process the click function
   $('#gameboard > div').on('click', function (event) {
     // this statement below stops the clicker from clicking once a winner wins
@@ -133,7 +124,7 @@ const initGame = function () {
     // turns ++ adds to the turns variable
     turns++
     // start checking for winner once turns hit 3 or more
-    if (turns >= 3) {
+    if (turns >= 5) {
       // loop through the winning combos array and check winning numbers
       for (let combo = 0; combo < winningCombos.length; combo++) {
         // console.log(winningCombos[combo])
@@ -184,6 +175,17 @@ const initGame = function () {
   })
 }
 
+const resetBoard = function () {
+  // all of the variables below will get reset to how it started
+  turns = 0
+  winner = false
+  currentPlayer = xPlayer
+  squaresPlayed = ['', '', '', '', '', '', '', '', '']
+  $('#gameboard > div').empty()
+  $('#playerStatusMessage').text('Player X, it is your turn')
+}
+
 module.exports = {
-  initGame
+  initGame,
+  resetBoard
 }

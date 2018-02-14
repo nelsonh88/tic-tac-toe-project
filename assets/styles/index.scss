@@ -13,6 +13,10 @@ h1 {
   text-align: center;
 }
 
+.gameboard-wrapper {
+  display: none;
+}
+
 #gameboard {
   background-color: $g-a-red;
   border: 6px solid $bloodred;
@@ -52,6 +56,10 @@ h1 {
   padding: 10px;
   text-align: center;
   width: 32%;
+}
+
+#playerStatusMessage {
+  display: none;
 }
 
 #message.error {
@@ -114,11 +122,11 @@ h1 {
     margin-top: 50px;
   }
 
-#newgame {
+#creategameapi {
   display: none;
 }
 
-.signed-in #newgame {
+.signed-in #creategameapi {
     display: block;
     margin: 20px auto;
     padding: 5px 10px;

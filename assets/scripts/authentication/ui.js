@@ -11,7 +11,6 @@ const onSignInSuccess = function (data) {
   $('#sign-in, #sign-up').hide()
   $('#message').removeClass('error').show()
   gameLogic.initGame()
-  $('#playerStatusMessage').show()
   $('body').addClass('signed-in')
 }
 
@@ -66,7 +65,10 @@ const signOutFailure = function (error) {
 }
 
 const onCreateGameSuccess = function (data) {
-  // store.game = {}
+  store.game = {}
+  $('.gameboard-wrapper').show()
+  $('#playerStatusMessage').show()
+  gameLogic.resetBoard()
   store.game.id = data.game.id
   store.game.xPlayer = data.game.player_x
   store.game.oPlayer = data.game.player_o
@@ -75,6 +77,7 @@ const onCreateGameSuccess = function (data) {
 }
 
 const onCreateGameError = function (error) {
+  debugger
   console.log('cannot create game' + error)
 }
 
