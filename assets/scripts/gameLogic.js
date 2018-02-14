@@ -1,5 +1,8 @@
 'use strict'
 
+const api = require('./authentication/api')
+const store = require('./store')
+
 let turns = 0
 // set winner false by default because no one won yet at the start of the game
 let winner = false
@@ -91,13 +94,6 @@ const initGame = function () {
   }
   // process the click function
   $('#gameboard > div').on('click', function (event) {
-    // this statement below stops the clicker from clicking once a winner wins
-    // before I did this it kept on looping over and letting a player continue
-    // to click even after a winner was declared
-    if (winner) {
-      return
-    }
-    // console.log(event.target)
     const square = event.target.id
     // square.match is a regular expression to extract the number from the string similar to what
     // we did in the normalized word lab
@@ -105,6 +101,13 @@ const initGame = function () {
     // but technically I don't need the g since there wont be another instance of a digit ie square12
     const squareLocation = square.match(/\d+/g)
     const squareTarget = '#' + square
+
+    // this statement below stops the clicker from clicking once a winner wins
+    // before I did this it kept on looping over and letting a player continue
+    // to click even after a winner was declared
+    if (winner) {
+      return
+    }
     // determine if sqaure is empty
     const isValid = $(squareTarget).is(':empty')
     if (!isValid) {
@@ -156,6 +159,15 @@ const initGame = function () {
         }
       }
     }
+    api.updateGameApi({
+      'game': {
+        'cell': {
+          'index': parseInt(squareLocation),
+          'value': currentPlayer
+        },
+        'over': winner
+      }
+    })
     // if it turns has reached 9 turns and there is no winner than you both are losers!!!!
     if (turns === 9 && winner === false) {
       $('#playerStatusMessage').text('LOSERS!! Game over!')

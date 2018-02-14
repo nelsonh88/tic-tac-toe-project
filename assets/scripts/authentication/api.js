@@ -58,10 +58,40 @@ const createGameApi = function () {
   })
 }
 
+const updateGameApi = function (data) {
+  // console.log(data)
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + store.game.id,
+    method: 'PATCH',
+    data,
+    headers: {
+      ContentType: 'application/json',
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const getGameApi = function () {
+  $.ajax({
+    url: config.apiOrigin + '/games?over=true',
+    method: 'GET',
+    headers: {
+      ContentType: 'application/json',
+      Authorization: 'Token token=' + store.user.token
+    },
+    // the success function is a callback for when the request was successful
+    success: function (data) {
+      console.log(data)
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
-  createGameApi
+  createGameApi,
+  updateGameApi,
+  getGameApi
 }

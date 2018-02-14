@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const gameLogic = require('../gameLogic')
+const api = require('./api')
 // const events = require('./events')
 
 const onSignInSuccess = function (data) {
@@ -12,6 +13,7 @@ const onSignInSuccess = function (data) {
   $('#message').removeClass('error').show()
   gameLogic.initGame()
   $('body').addClass('signed-in')
+  const gameHistory = api.getGameApi()
 }
 
 const onSignInFailure = function (error) {
@@ -24,7 +26,6 @@ const onSignInFailure = function (error) {
 const onSignUpSuccess = function (data) {
   $('#message').text('Sign-up successfully')
   $('#message').removeClass('error').show()
-  console.log('successfully signed up')
 }
 
 const onSignUpFailure = function (error) {
@@ -77,8 +78,15 @@ const onCreateGameSuccess = function (data) {
 }
 
 const onCreateGameError = function (error) {
-  debugger
   console.log('cannot create game' + error)
+}
+
+const onUpdateSuccess = function () {
+  console.log('game updated')
+}
+
+const onUpdateError = function () {
+  console.log('game error')
 }
 
 module.exports = {
@@ -91,5 +99,7 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   onCreateGameSuccess,
-  onCreateGameError
+  onCreateGameError,
+  onUpdateSuccess,
+  onUpdateError
 }
