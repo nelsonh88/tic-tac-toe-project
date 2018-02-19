@@ -199,9 +199,14 @@ input[type="submit"] {
     font-size: 18px;
     position: absolute;
     top: 70px;
+    display: block;
 }
 
 #playergames {
+  display: none;
+}
+
+#playername {
   display: none;
 }
 
