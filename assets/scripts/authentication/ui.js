@@ -40,13 +40,13 @@ const onSignUpFailure = function (error) {
 const changePasswordSuccess = function (data) {
   $('#message').text('Changed password successfully')
   $('#message').removeClass('error').show()
-  console.log('successfully changed password!!')
+  // console.log('successfully changed password!!')
 }
 
 const changePasswordFailure = function (error) {
   $('#message').text('Error on change-password')
   $('#message').addClass('error').show()
-  console.log(error)
+  console.error(error)
 }
 
 const signOutSuccess = function () {
@@ -58,14 +58,14 @@ const signOutSuccess = function () {
   $('body').removeClass('signed-in')
   $('#playerStatusMessage').hide()
 
-  console.log('successfully signed out')
+  // console.log('successfully signed out')
 }
 
 const signOutFailure = function (error) {
   $('#message').text('Error on sign out')
   $('#message').addClass('error').show()
 
-  console.log(error)
+  console.error(error)
 }
 
 const onCreateGameSuccess = function (data) {
@@ -82,15 +82,15 @@ const onCreateGameSuccess = function (data) {
 }
 
 const onCreateGameError = function (error) {
-  console.log('cannot create game' + error)
+  console.error('cannot create game' + error)
 }
 
 const onUpdateSuccess = function () {
-  console.log('game updated')
+  // console.log('game updated')
 }
 
 const onUpdateError = function () {
-  console.log('game error')
+  console.error('game error')
 }
 
 module.exports = {

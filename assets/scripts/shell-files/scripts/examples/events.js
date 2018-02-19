@@ -18,7 +18,7 @@ const onGetAll = function (event) {
   api.getAll(data)
     .then(ui.onGetAllSuccess)
     .catch(ui.onGetAllFailure)
-  console.log('onGetAll function good')
+  // console.log('onGetAll function good')
 }
 
 const addHandlers = () => {

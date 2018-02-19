@@ -146,7 +146,7 @@ const initGame = function () {
           // console.log(turns)
           // now compare the squares played array items to see if they are the same value
           if (square1 === square2 && square2 === square3) {
-            console.log('winner!!')
+            // console.log('winner!!')
             winner = true
             updateStatusMessage()
             break

@@ -22,7 +22,7 @@ const signIn = function (data) {
       contentType: 'application/json'
     },
     success: function (data) {
-      console.log(data.user.email)
+      // console.log(data.user.email)
       const playerNameEl = document.getElementById('playername')
       playerNameEl.textContent = data.user.email
     },
@@ -91,7 +91,7 @@ const getGameData = function () {
       const jsonGameData = JSON.parse(gameData)
       const playerGamesPlayedEl = document.getElementById('playergamesplayed')
       playerGamesPlayedEl.textContent = jsonGameData.games.length
-      console.log(jsonGameData)
+      // console.log(jsonGameData)
     }
   })
 }

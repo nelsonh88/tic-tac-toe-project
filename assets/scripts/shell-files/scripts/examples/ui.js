@@ -4,7 +4,7 @@ const onCreateSuccess = function (data) {
   $('#message').text('Example successfully created')
   $('#message').css('background-color', 'green')
 
-  console.log('successfully created an example')
+  // console.log('successfully created an example')
 }
 
 const onCreateFailure = function (error) {
@@ -17,7 +17,7 @@ const onGetAllSuccess = function (data) {
   $('#message').text('Retrieved all examples!')
   $('#message').css('background-color', 'green')
 
-  console.log('successfully got all examples')
+  // console.log('successfully got all examples')
 }
 
 const onGetAllFailure = function (error) {
