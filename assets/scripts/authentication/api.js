@@ -21,6 +21,11 @@ const signIn = function (data) {
     headers: {
       contentType: 'application/json'
     },
+    success: function (data) {
+      console.log(data.user.email)
+      const playerNameEl = document.getElementById('playername')
+      playerNameEl.textContent = data.user.email
+    },
     data: data
   })
 }
@@ -71,17 +76,22 @@ const updateGameApi = function (data) {
   })
 }
 
-const getGameApi = function () {
-  $.ajax({
+const getGameData = function () {
+  return $.ajax({
     url: config.apiOrigin + '/games?over=true',
     method: 'GET',
+    dataType: 'json',
     headers: {
       ContentType: 'application/json',
       Authorization: 'Token token=' + store.user.token
     },
     // the success function is a callback for when the request was successful
     success: function (data) {
-      console.log(data)
+      const gameData = JSON.stringify(data)
+      const jsonGameData = JSON.parse(gameData)
+      const playerGamesPlayedEl = document.getElementById('playergamesplayed')
+      playerGamesPlayedEl.textContent = jsonGameData.games.length
+      console.log(jsonGameData)
     }
   })
 }
@@ -93,5 +103,5 @@ module.exports = {
   signOut,
   createGameApi,
   updateGameApi,
-  getGameApi
+  getGameData
 }

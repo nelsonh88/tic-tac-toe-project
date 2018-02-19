@@ -183,7 +183,6 @@ const initGame = function () {
         updateStatusMessage()
       }
     }
-    // console.log(squaresPlayed)
   })
 }
 

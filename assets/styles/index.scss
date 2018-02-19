@@ -194,3 +194,21 @@ input[type="submit"] {
  {
     width: 49.25%;
 }
+
+.signed-in #playername {
+    font-size: 18px;
+    position: absolute;
+    top: 70px;
+}
+
+#playergames {
+  display: none;
+}
+
+.signed-in #playergames {
+    display: block;
+    font-size: 16px;
+    position: absolute;
+    top: 92px;
+    color: $bloodred;
+}

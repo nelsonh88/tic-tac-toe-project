@@ -13,7 +13,10 @@ const onSignInSuccess = function (data) {
   $('#message').removeClass('error').show()
   gameLogic.initGame()
   $('body').addClass('signed-in')
-  const gameHistory = api.getGameApi()
+  api.getGameData()
+  // console.log(gameHistory)
+  // const gameHistoryData = $.JSON.parse(gameHistory)
+  // console.log(gameHistoryData)
 }
 
 const onSignInFailure = function (error) {
@@ -74,7 +77,8 @@ const onCreateGameSuccess = function (data) {
   store.game.xPlayer = data.game.player_x
   store.game.oPlayer = data.game.player_o
   store.game.over = data.game.over
-  console.log(store.game)
+  // console.log(store.game)
+  api.getGameData()
 }
 
 const onCreateGameError = function (error) {
