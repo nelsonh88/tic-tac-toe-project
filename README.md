@@ -1,7 +1,7 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
 How to Use:
-- A user must sign in with an email that is registered with the game, if user does not have one already registered then the user can sign-up with an email and create a password.
+- A user must sign in with an email that is registered with the game.  If the user has not already registered then the user can sign-up with an email and create a password, then sign-in.
   - Only one user needs to sign in to play locally.
 - User must then create a new game
 - The user who is assumming player X will go first. Then the user who is assumming player O goes next.
@@ -29,7 +29,7 @@ Usolved Problems:
 - Want to add different tokens so users can have a choice on which they want to use for X or O instead of just the X and O letters.
 - Need to make it compatible to mobile devices and interactve with different window sizes!!!  I missed the opportunity to do it at the beginning of the project because I didn't think of it. I feel like I really dropped the ball in this area. This will be my top priority.
 - Want to do some more work on the get games API, to get back a variety of statistics.
-- Also, want to work more on styling, to make it look better. 
+- Also, want to work more on styling, to make it look better.
 
 Wireframes and User Stories:
 - Link to wireframes: https://imgur.com/DQCsjO8
